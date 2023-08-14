@@ -23,6 +23,7 @@ const useLastPrice = () => {
   useEffect(() => {
     if (!lastPriceMsg || !lastPriceMsg?.data?.length > 0) return;
 
+    // TODO: check the default case
     const { price } = lastPriceMsg.data[0];
     const highlightValue =
       price > preLastPriceRef.current

@@ -1,12 +1,16 @@
 import React, { useMemo } from 'react';
 import clsx from 'clsx';
 import numeral from 'numeral';
+import Decimal from 'decimal.js';
 
-const QuoteRow = ({ rowData, classNames, totalBarRenderer }) => {
+const QuoteRow = ({ rowData, classNames, totalQuoteSize }) => {
   const { price, size, total, sizeColHighlight } = rowData;
-  const totalBar = useMemo(
-    () => totalBarRenderer(total),
-    [totalBarRenderer, total]
+
+  // Accumulative total size percentage bar formula:
+  //   Current quote accumulative total size / Total quote size of buy or sell
+  const barWidth = useMemo(
+    () => numeral(Decimal.div(total, totalQuoteSize).toNumber()).format('0%'),
+    [totalQuoteSize, total]
   );
 
   return (
@@ -22,7 +26,7 @@ const QuoteRow = ({ rowData, classNames, totalBarRenderer }) => {
         {numeral(size).format('0,0')}
       </div>
       <div className='cell total'>
-        {totalBar}
+        <div className='bar' style={{ width: barWidth }} />
         {numeral(total).format('0,0')}
       </div>
     </div>

@@ -147,22 +147,10 @@ const useQuoteList = () => {
     [asksQuoteList, bidsQuoteList]
   );
 
-  const totalBarRenderer = useCallback(
-    (total) => {
-      // Accumulative total size percentage bar formula:
-      //   Current quote accumulative total size / Total quote size of buy or sell
-      const barWidth = numeral(
-        Decimal.div(total, totalQuoteSize).toNumber()
-      ).format('0%');
-      return <div className='bar' style={{ width: barWidth }} />;
-    },
-    [totalQuoteSize]
-  );
-
   return {
     asksQuoteList,
     bidsQuoteList,
-    totalBarRenderer,
+    totalQuoteSize,
   };
 };
 

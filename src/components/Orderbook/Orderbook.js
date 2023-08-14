@@ -4,7 +4,7 @@ import QuoteRow from '@/components/Orderbook/QuoteRow';
 import LastPrice from '@/components/Orderbook/LastPrice';
 
 const Orderbook = () => {
-  const { asksQuoteList, bidsQuoteList, totalBarRenderer } = useQuoteList();
+  const { asksQuoteList, bidsQuoteList, totalQuoteSize } = useQuoteList();
 
   return (
     <div className='order-book'>
@@ -24,7 +24,7 @@ const Orderbook = () => {
               key={`${rowData.price}`}
               rowData={rowData}
               classNames='ask'
-              totalBarRenderer={totalBarRenderer}
+              totalQuoteSize={totalQuoteSize}
             />
           ))}
           <LastPrice />
@@ -34,7 +34,7 @@ const Orderbook = () => {
               key={`${rowData.price}`}
               rowData={rowData}
               classNames='bid'
-              totalBarRenderer={totalBarRenderer}
+              totalQuoteSize={totalQuoteSize}
             />
           ))}
         </div>
