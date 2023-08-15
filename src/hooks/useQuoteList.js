@@ -74,7 +74,7 @@ const useQuoteList = () => {
     return () => {
       sendQuoteListMsg(
         JSON.stringify({
-          op: 'subscribe',
+          op: 'unsubscribe',
           args: ['update:BTCPFC_0'],
         })
       );
